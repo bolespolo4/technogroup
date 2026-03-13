@@ -1,0 +1,94 @@
+name: Testing Deploy → GitHub Pages + Railway
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run type-check
+
+  build-web:
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Build web
+        working-directory: apps/web
+        env:
+          VITE_USE_MOCK: 'true'
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+          NODE_ENV: production
+        run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/dist
+
+  deploy-pages:
+    runs-on: ubuntu-latest
+    needs: build-web
+    environment:
+      name: testing
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-api:
+    runs-on: ubuntu-latest
+    needs: quality
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install -g @railway/cli
+      - name: Deploy to Railway
+        working-directory: apps/api
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --service technobit-api
+
+  announce-urls:
+    runs-on: ubuntu-latest
+    needs: [deploy-pages, deploy-api]
+    if: always() && needs.deploy-pages.result == 'success'
+    steps:
+      - name: Print deployment URLs
+        run: |
+          echo "╔══════════════════════════════════════════════════════╗"
+          echo "║   🧪 TECHNOBIT — TESTING DEPLOYMENT COMPLETE         ║"
+          echo "╠══════════════════════════════════════════════════════╣"
+          echo "║  🌐 Frontend (GitHub Pages / Mock Data)              ║"
+          echo "║     https://${{ github.repository_owner }}.github.io/technobit-website/"
+          echo "╠══════════════════════════════════════════════════════╣"
+          echo "║  🔌 API    https://technobit-api.railway.app/api     ║"
+          echo "║  📘 Docs   https://technobit-api.railway.app/api/docs ║"
+          echo "║  ❤️  Health https://technobit-api.railway.app/api/health ║"
+          echo "╠══════════════════════════════════════════════════════╣"
+          echo "║  ⚠️  TESTING GRADE — NOT FOR PRODUCTION               ║"
+          echo "║  🌿 Branch: ${{ github.ref_name }} | 🔖 ${{ github.sha }} ║"
+          echo "╚══════════════════════════════════════════════════════╝"
