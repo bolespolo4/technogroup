@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "systems": "Systems",
+    "technicalHub": "Technical Hub",
+    "media": "Media Center",
+    "about": "About Us",
+    "markets": "Markets",
+    "contact": "Contact",
+    "support": "Request Technical Support",
+    "login": "Login",
+    "portal": "My Portal"
+  },
+  "hero": {
+    "slide1Title": "Advanced Technical Building Solutions",
+    "slide1Subtitle": "Engineering excellence for modern construction",
+    "slide2Title": "Innovative Composite Systems",
+    "slide2Subtitle": "Lightweight, durable, high-performance",
+    "slide3Title": "Global Presence, Local Expertise",
+    "slide3Subtitle": "Serving 52+ countries worldwide",
+    "slide4Title": "Sustainable by Design",
+    "slide4Subtitle": "Building a greener future together",
+    "cta": "Explore Products"
+  },
+  "sections": {
+    "discover": "Discover TechnoBit Solutions",
+    "systems": "Our Systems",
+    "projects": "Featured Projects",
+    "trustedBy": "Trusted By Industry Leaders",
+    "sustainability": "Sustainability Commitment",
+    "map": "Global Presence"
+  },
+  "footer": {
+    "tagline": "Technical Building Solutions",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "exploreSystem": "Explore System",
+    "exploreAllProjects": "Explore All Projects",
+    "readMore": "Read More",
+    "download": "Download",
+    "submit": "Submit",
+    "search": "Search..."
+  }
+}

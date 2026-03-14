@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "systems": "الأنظمة",
+    "technicalHub": "المركز التقني",
+    "media": "مركز الإعلام",
+    "about": "من نحن",
+    "markets": "الأسواق",
+    "contact": "اتصل بنا",
+    "support": "طلب دعم تقني",
+    "login": "تسجيل الدخول",
+    "portal": "بوابتي"
+  },
+  "hero": {
+    "slide1Title": "حلول بناء تقنية متقدمة",
+    "slide1Subtitle": "التميز الهندسي للبناء الحديث",
+    "slide2Title": "أنظمة مركبة مبتكرة",
+    "slide2Subtitle": "خفيفة الوزن، متينة، عالية الأداء",
+    "slide3Title": "حضور عالمي، خبرة محلية",
+    "slide3Subtitle": "نخدم أكثر من 52 دولة حول العالم",
+    "slide4Title": "تصميم مستدام",
+    "slide4Subtitle": "نبني مستقبلاً أخضر معاً",
+    "cta": "استكشف المنتجات"
+  },
+  "sections": {
+    "discover": "اكتشف حلول تكنوبيت",
+    "systems": "أنظمتنا",
+    "projects": "مشاريع مميزة",
+    "trustedBy": "يثق بنا قادة الصناعة",
+    "sustainability": "الالتزام بالاستدامة",
+    "map": "التواجد العالمي"
+  },
+  "footer": {
+    "tagline": "حلول بناء تقنية",
+    "quickLinks": "روابط سريعة",
+    "contactUs": "اتصل بنا",
+    "followUs": "تابعنا",
+    "rights": "جميع الحقوق محفوظة."
+  },
+  "common": {
+    "learnMore": "اعرف المزيد",
+    "viewAll": "عرض الكل",
+    "exploreSystem": "استكشف النظام",
+    "exploreAllProjects": "استكشف جميع المشاريع",
+    "readMore": "اقرأ المزيد",
+    "download": "تحميل",
+    "submit": "إرسال",
+    "search": "بحث..."
+  }
+}
